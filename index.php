@@ -6,6 +6,10 @@
     <title>this is where I learn all my lesson</title>
 </head>
 <body>
-    
+    <?php
+    $person = "Daniel";
+    $people = array("Daniel", "jane");
+    echo $people[0];
+    ?>
 </body>
 </html>
