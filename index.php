@@ -7,9 +7,9 @@
 </head>
 <body>
     <?php
-    $person = "Daniel";
-    $people = array("Daniel", "jane");
-    echo $people[0];
+  $data = array();
+  array_push($data, "Daniel", "fono");
+  print_r($data);
     ?>
 </body>
 </html>
