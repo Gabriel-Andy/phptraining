@@ -1,3 +1,7 @@
+<?php
+include_once "dbh.inc.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +11,19 @@
 </head>
 <body>
     <?php
-  $data = array();
-  array_push($data, "Daniel", "fono");
-  print_r($data);
+    
+ $sql = "SELECT * FROM users";
+ $result = mysqli_query($conn, $sql);
+ $datas = array();
+ if (mysqli_num_rows($result) > 0 ){
+     
+     while($row = mysqli_fetch_assoc($result)){
+         $datas[]= $row;
+     }
+ }
+ foreach($datas as $data) {
+     echo $data['usersId'];
+ }
     ?>
 </body>
 </html>
