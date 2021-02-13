@@ -48,9 +48,9 @@ if(isset($_SESSION['id'])){
     echo "you are not logged in!";
     echo "<form action = 'signup.php' method = 'POST'>
     <input type = 'text' name = 'first' placeholder = 'first name'>
-    <input type = 'text' name = 'first' placeholder = 'last name'>
-    <input type = 'text' name = 'first' placeholder = 'username'>
-    <input type = 'password' name = 'first' placeholder = 'password'>
+    <input type = 'text' name = 'last' placeholder = 'last name'>
+    <input type = 'text' name = 'uid' placeholder = 'username'>
+    <input type = 'password' name = 'pwd' placeholder = 'password'>
     <button type = 'submit' name = 'submitSignup'>Signup</button>
     </form>";
 }

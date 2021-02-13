@@ -1,17 +1,17 @@
 <?php
-include_once 'dbh.php';
+include_once 'dbh.inc.php';
 
 $first = $_POST['first'];
 $last = $_POST['last'];
 $uid = $_POST['uid'];
 $pwd = $_POST['pwd'];
 
-$sql = "INSERT INTO user(first,last,username,password) 
-VALUES('$first', '$last', '$uid', '$pwd', '$pwd')";
+$sql = "INSERT INTO costumer(first,last,username,password) 
+VALUES('$first', '$last', '$uid', '$pwd')";
 
  mysqli_query($conn, $sql);
 
- $sql = "INSERT INTO user WHERE username = '$uid' AND first = '$first' ";
+ $sql = " SELECT * FROM costumer WHERE username = '$uid' AND first = '$first' ";
  $result = mysqli_query($conn,$sql);
 
  if(mysqli_num_rows($result) > 0) {
