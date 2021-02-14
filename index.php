@@ -22,7 +22,7 @@ if(mysqli_num_rows($result) > 0){
         $sqlImg = 'SELECT * FROM profileimg WHERE userid = "$id"';
         $resultImg = mysqli_query($conn,$sqlImg);
         while($rowImg = mysqli_fetch_assoc($resultImg)) {
-            echo '<div>';
+            echo "<div>";
             if($rowImg['status'] == 0){
                 echo "<img src = 'uploads/profile".$id.".jpg'>";
 
@@ -30,7 +30,7 @@ if(mysqli_num_rows($result) > 0){
                 echo "<img src = 'uploads/profiledefault.jpg'>";
             }
             echo $row['username'];
-            echo '</div>';
+            echo "</div>";
         }
     }
 } else {

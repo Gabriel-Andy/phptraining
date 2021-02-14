@@ -21,7 +21,7 @@ VALUES('$first', '$last', '$uid', '$pwd')";
          $sql = "INSERT INTO profileimg( userid,status)
          VALUES ('$userid', 1)";
          mysqli_query($conn, $sql);
-         header("Location: index.php");
+         header("Location: index.php ");
  }
 } else {
     echo 'you have an error!';
