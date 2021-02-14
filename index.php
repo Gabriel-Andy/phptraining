@@ -24,7 +24,7 @@ if(mysqli_num_rows($result) > 0){
         while($rowImg = mysqli_fetch_assoc($resultImg)) {
             echo "<div>";
             if($rowImg['status'] == 0){
-                echo "<img src = 'uploads/profile".$id.".jpg'>";
+               echo '<img src="uploads/profile' . $id . '.jpg?' . mt_rand() . '">';
 
             }else {
                 echo "<img src = 'uploads/profiledefault.jpg'>";
