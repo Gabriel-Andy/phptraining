@@ -27,7 +27,7 @@ if(mysqli_num_rows($result) > 0){
                echo '<img src="uploads/profile' . $id . '.jpg?' . mt_rand() . '">';
 
             }else {
-                echo "<img src = 'uploads/profiledefault.jpg'>";
+                 echo '<img src="uploads/profiledefault.jpg">';
             }
             echo $row['username'];
             echo "</div>";
