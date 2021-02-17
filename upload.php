@@ -1,42 +1,58 @@
 <?php
-
 session_start();
 include_once 'dbh.inc.php';
 $id = $_SESSION['id'];
-if(isset($_POST['submit'])) {
-    
-$file = $_FILES['file'];
-print_r($file);
-$fileName = $_FILES['file']['name'];
-$fileTmpName = $_FILES['file']['tmp_name'];
-$fileSize = $_FILES['file']['size'];
-$fileError = $_FILES['file']['error'];
-$fileType = $_FILES['file']['type'];
-$fileExt = explode('.', $fileName);
-$fileActualExt = strtolower(end($fileExt));
-$allowed = array('png','jpeg', 'jpg','pdf');
-if(in_array( $fileActualExt, $allowed)){
-    if($fileError === 0){
-      if($fileSize < 2000000 ) {
-        //   $fileNameNew = uniqid('', true).$id.'.'.$fileActualExt;
-           $fileNameNew = "profile".$id.".".$fileActualExt;
-          $fileDestination = 'uploads/'.$fileNameNew;
-          move_uploaded_file($fileTmpName , $fileDestination);
-          $sql = "UPDATE profileimg SET status = 0 WHERE userid = '$id';";
-          $result = mysqli_query($conn,$sql);
-          header("Location: index.php?uploadssuccess");
-      } else {
-          echo '<br/>';
-          echo '<br/>';
-          echo 'your file is too big';
+
+if (isset($_POST['submit'])) {
+
+  // We grab the core file
+  $file = $_FILES['file'];
+
+  $fileName = $_FILES['file']['name'];
+  $fileTmpName = $_FILES['file']['tmp_name'];
+  $fileSize = $_FILES['file']['size'];
+  $fileError = $_FILES['file']['error'];
+  $fileType = $_FILES['file']['type'];
+  // We could also have shortened this by writing:
+  // $fileName = $file['name'];
+  // Since we grabbed the core file at the start...
+
+  // Here we get the file extension of the uploaded file
+  $fileExt = explode('.', $fileName);
+  $fileActualExt = strtolower(end($fileExt));
+
+  // Here WE decide which file types we will allow
+  $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+
+  // Now we check if the file is an allowed file type
+  if (in_array($fileActualExt, $allowed)) {
+    // Here we check for upload errors
+    if ($fileError === 0) {
+      // Here we check for file size
+      if ($fileSize < 1000000) {
+        // Here we create a new unique name for the file that matches the user
+        $fileNameNew = "profile".$id.".".$fileActualExt;
+        // Here we create the path the file should get uploaded to
+        $fileDestination = 'uploads/'.$fileNameNew;
+        // Now we upload the file!
+        move_uploaded_file($fileTmpName, $fileDestination);
+        // And now we update the profile image in the database to the new image
+        $sql =  "UPDATE profileimg SET status = 0 WHERE userid ='$id';";
+
+        $result = mysqli_query($conn, $sql);
+        // And send the user back to the front page
+        header("Location: index.php?upload=success");
       }
-    } else {
-        echo 'there was error uploading this file';
+      else {
+        echo "Your file is too big!";
+      }
     }
+    else {
+      echo "There was an error uploading your file!";
+    }
+  }
+  else {
+    echo "You cannot upload files of this type!";
+  }
 
-}else {
-    echo "you cannot upload files of this type!";
 }
-
-}
-?>
