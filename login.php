@@ -9,6 +9,6 @@ if(isset($_POST['submitLogin'])){
           $id = $row['id'];
         }
     $_SESSION['id'] = $id ;
-    header('Location: index.php?status=login');
-}
+    header('Location: index.php');
+      }
 }

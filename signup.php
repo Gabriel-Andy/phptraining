@@ -24,6 +24,6 @@ VALUES('$first', '$last', '$uid', '$pwd')";
          header("Location: index.php?status=signup");
  }
 } else {
-    echo 'you have an error!';
+    echo 'you have an error in this file!';
 }
 

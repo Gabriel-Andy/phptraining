@@ -16,7 +16,11 @@
     <?php
       // Here we spit out all users from the database.
       // Note: We are not using any security here like prepared statements! Since this is just an exercise.
-      $sql = "SELECT * FROM costumer";
+ 
+
+      // Here we show the upload system IF the user is logged in!
+      if (isset($_SESSION['id'])) {
+             $sql = "SELECT * FROM costumer";
       $result = mysqli_query($conn, $sql);
       if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
@@ -26,7 +30,7 @@
           while ($rowImg = mysqli_fetch_assoc($resultImg)) {
             echo '<div class="user-container">';
               if ($rowImg['status'] == 0) {
-                echo '<img src="uploads/profile'.$id.'.jpg">';
+                echo '<img src="uploads/profile'.$id.'.png">';
               }
               else {
                 echo '<img src="uploads/profiledefault.jpg">';
@@ -39,9 +43,6 @@
       else {
         echo "There are no users yet!";
       }
-
-      // Here we show the upload system IF the user is logged in!
-      if (isset($_SESSION['id'])) {
         if ($_SESSION['id'] === $id ) {
           echo "You are logged in as user #1";
         }
